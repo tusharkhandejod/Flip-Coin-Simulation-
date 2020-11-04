@@ -1,9 +1,9 @@
 #!/bin/bash
 echo "Welcome to the Flip Coun Simulation program"
-read -p "Enter the no of times you wants coin to be flipped=" n
 headwincount=0
 tailwincount=0
-for (( i=1; i<=n; i++ ))
+diff=0
+while [[ $headwincount -le 20 && $tailwincount -le 20 ]]
 do
 x=$(($RANDOM%2))
 if [[ $x -eq 0 ]]
@@ -18,3 +18,16 @@ fi
 done
 echo "Head win count=" $headwincount
 echo "Tail win count=" $tailwincount
+
+if [[ $headwincount -eq 21 ]]
+then
+diff=$(($headwincount-$tailwincount))
+echo "Head wins by $diff count"
+elif [[ $tailwincount -eq 21 ]]
+then
+diff=$(($tailwincount-$headwincount))
+echo "Tail wins by $diff count"
+elif [[ $headwincount -eq 21 && $tailwincount -eq 21 ]]
+then
+echo "It is a Tie"
+fi
